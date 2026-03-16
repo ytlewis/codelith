@@ -112,9 +112,9 @@ export default function ThemeToggle() {
 
         {/* Moon — visible in light mode (target = dark) */}
         <svg ref={moonRef} style={{ overflow: 'visible', opacity: showMoon ? 1 : 0 }}>
-          <path d="M18 10 A8 8 0 1 0 18 22 A5.5 5.5 0 1 1 18 10 Z" fill="#e0e7ff" />
-          <circle cx="14" cy="18" r="1" fill="rgba(148,163,184,0.4)" />
-          <circle cx="17" cy="14.5" r="0.7" fill="rgba(148,163,184,0.35)" />
+          <path d="M18 10 A8 8 0 1 0 18 22 A5.5 5.5 0 1 1 18 10 Z" fill="#1e293b" />
+          <circle cx="14" cy="18" r="1" fill="rgba(30,41,59,0.5)" />
+          <circle cx="17" cy="14.5" r="0.7" fill="rgba(30,41,59,0.4)" />
         </svg>
 
         {/* Stars — visible in light mode alongside moon */}
@@ -123,7 +123,7 @@ export default function ThemeToggle() {
             key={i}
             ref={el => { starsRef.current[i] = el; }}
             cx={cx} cy={cy} r={i % 2 === 0 ? 0.9 : 1.2}
-            fill="#e0e7ff"
+            fill="#1e293b"
             style={{ opacity: showMoon ? 1 : 0 }}
           />
         ))}
