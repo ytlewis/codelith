@@ -103,7 +103,8 @@ export default function ProjectModal({ open, onClose }: ProjectModalProps) {
       />
 
       {/* Modal */}
-      <div className="relative w-full max-w-2xl bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative w-full max-w-2xl bg-card border border-border rounded-none sm:rounded-2xl shadow-2xl overflow-hidden
+                      h-full sm:h-auto max-h-full sm:max-h-[90vh] flex flex-col">
 
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-border">
@@ -134,7 +135,7 @@ export default function ProjectModal({ open, onClose }: ProjectModalProps) {
         )}
 
         {/* Body */}
-        <div className="px-6 py-8 min-h-[360px]">
+        <div className="px-4 sm:px-6 py-6 sm:py-8 min-h-[300px] overflow-y-auto flex-1">
 
           {/* ── SUBMITTED ── */}
           {submitted && (
@@ -328,7 +329,7 @@ export default function ProjectModal({ open, onClose }: ProjectModalProps) {
 
         {/* Footer */}
         {!submitted && (
-          <div className="flex items-center justify-between px-6 py-4 border-t border-border bg-secondary/30">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4 border-t border-border bg-secondary/30 shrink-0">
             <button
               onClick={() => setStep((s) => s - 1)}
               disabled={step === 0}

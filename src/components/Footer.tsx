@@ -235,7 +235,7 @@ export default function Footer() {
         <div className="relative z-10">
 
           {/* Main footer grid */}
-          <div className="max-w-7xl mx-auto px-6 pt-16 pb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
               {/* ── Brand ── */}
@@ -355,7 +355,7 @@ export default function Footer() {
 
           {/* Newsletter strip */}
           <div className="border-t border-amber-900/40">
-            <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div>
                 <p className="text-sm font-semibold text-amber-100">Stay in the loop</p>
                 <p className="text-xs text-amber-200/70 mt-0.5">Get updates on new projects and tech insights.</p>
@@ -364,7 +364,7 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="your@email.com"
-                  className="flex-1 sm:w-64 px-4 py-2.5 rounded-full text-sm bg-amber-950/40 border border-amber-800/30
+                  className="flex-1 sm:w-56 px-4 py-2.5 rounded-full text-sm bg-amber-950/40 border border-amber-800/30
                              text-amber-100 placeholder:text-amber-200/30 focus:outline-none focus:border-amber-500/50"
                 />
                 <button
