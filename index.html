@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Content Security Policy: restrict resource origins, block inline scripts except Vite HMR -->
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      img-src 'self' data: https://avatars.githubusercontent.com https://opengraph.githubassets.com;
+      connect-src 'self' https://api.github.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self' mailto:;
+    " />
+
+    <!-- Prevent MIME-type sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <!-- Block clickjacking -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <!-- Force HTTPS on future visits -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=63072000; includeSubDomains" />
+    <!-- Limit referrer info sent to third parties -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <title>Codelith | Crafting Digital Excellence</title>
+    <meta name="description" content="A two-person software development agency building exceptional digital experiences. Web apps, mobile apps, and custom software." />
+    <meta name="author" content="Codelith" />
+
+    <meta property="og:title" content="Codelith | Crafting Digital Excellence" />
+    <meta property="og:description" content="We build innovative software solutions that drive business growth." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/favicon.svg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YtLewis_" />
+    <meta name="twitter:image" content="/favicon.svg" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

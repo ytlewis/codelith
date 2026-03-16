@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <!-- Background gradient: deep dark blue-slate -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1b2a"/>
+      <stop offset="100%" stop-color="#1a2e44"/>
+    </linearGradient>
+
+    <!-- Strata layer gradients (cyan → teal → blue) -->
+    <linearGradient id="s1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0099cc"/>
+    </linearGradient>
+    <linearGradient id="s2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#00b8e6"/>
+      <stop offset="100%" stop-color="#0077aa"/>
+    </linearGradient>
+    <linearGradient id="s3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#009acc"/>
+      <stop offset="100%" stop-color="#005588"/>
+    </linearGradient>
+    <linearGradient id="s4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#007aaa"/>
+      <stop offset="100%" stop-color="#003d66"/>
+    </linearGradient>
+    <linearGradient id="s5" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#005c88"/>
+      <stop offset="100%" stop-color="#002244"/>
+    </linearGradient>
+
+    <!-- Glow filter for the accent dot -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Clip to the "C" arc shape -->
+    <clipPath id="cClip">
+      <!--
+        The C is formed by a thick arc ring with a gap on the right side.
+        We use a donut (outer circle minus inner circle) clipped to exclude
+        the right-side opening (a rectangle covering the right ~40%).
+      -->
+      <path d="
+        M 32 4
+        A 28 28 0 1 0 32 60
+        A 28 28 0 0 0 32 4
+        Z
+        M 32 14
+        A 18 18 0 1 1 32 50
+        A 18 18 0 0 1 32 14
+        Z
+      " fill-rule="evenodd"/>
+    </clipPath>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- Subtle inner shadow ring -->
+  <rect width="64" height="64" rx="14" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.08"/>
+
+  <!--
+    The C shape: 5 horizontal strata bars clipped to the C arc.
+    Each bar is a slightly different shade, creating a "geological layers" / "code lines" feel.
+    The right side of the C is open because the bars don't extend past x=44.
+  -->
+  <g clip-path="url(#cClip)">
+    <!-- Strata bar 1 (top) -->
+    <rect x="4" y="8"  width="40" height="9"  rx="1" fill="url(#s1)" opacity="0.95"/>
+    <!-- Strata bar 2 -->
+    <rect x="4" y="19" width="40" height="8"  rx="1" fill="url(#s2)" opacity="0.92"/>
+    <!-- Strata bar 3 (middle) -->
+    <rect x="4" y="29" width="40" height="8"  rx="1" fill="url(#s3)" opacity="0.90"/>
+    <!-- Strata bar 4 -->
+    <rect x="4" y="39" width="40" height="8"  rx="1" fill="url(#s4)" opacity="0.88"/>
+    <!-- Strata bar 5 (bottom) -->
+    <rect x="4" y="49" width="40" height="9"  rx="1" fill="url(#s5)" opacity="0.85"/>
+
+    <!-- Thin highlight line on each bar (top edge shimmer) -->
+    <rect x="4" y="8"  width="40" height="1.5" rx="0.5" fill="#ffffff" opacity="0.18"/>
+    <rect x="4" y="19" width="40" height="1.5" rx="0.5" fill="#ffffff" opacity="0.14"/>
+    <rect x="4" y="29" width="40" height="1.5" rx="0.5" fill="#ffffff" opacity="0.12"/>
+    <rect x="4" y="39" width="40" height="1.5" rx="0.5" fill="#ffffff" opacity="0.10"/>
+    <rect x="4" y="49" width="40" height="1.5" rx="0.5" fill="#ffffff" opacity="0.08"/>
+  </g>
+
+  <!-- Accent glow dot — the "cursor" / active pixel at the C opening midpoint -->
+  <circle cx="50" cy="32" r="4.5" fill="#00d4ff" filter="url(#glow)" opacity="0.95"/>
+  <!-- Inner bright core -->
+  <circle cx="50" cy="32" r="2" fill="#ffffff" opacity="0.9"/>
+</svg>
