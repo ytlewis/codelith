@@ -59,8 +59,9 @@ export default function PortfolioSection() {
 
         <div className="flex justify-center mt-12">
           <Link to="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-primary/40
-                       text-primary hover:bg-primary/10 transition-all duration-200 text-sm font-semibold">
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full
+                       border border-primary text-primary bg-primary/10
+                       hover:bg-primary/20 transition-all duration-200 text-sm font-semibold">
             View all projects <ArrowRight className="w-4 h-4"/>
           </Link>
         </div>
