@@ -3,10 +3,12 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import PageBackground from '@/components/PageBackground';
-import HeroSection from '@/components/HeroSection';
+import { ZoomParallax } from '@/components/ZoomParallax';
 import PhilosophySection from '@/components/PhilosophySection';
+import { LandingAccordionItem } from '@/components/ui/interactive-image-accordion';
 import ServicesSection from '@/components/ServicesSection';
 import PortfolioSection from '@/components/PortfolioSection';
+import InnovationSection from '@/components/InnovationSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -51,10 +53,20 @@ const Index = () => {
       <ThemeToggle />
 
       <main className="relative z-10">
-        <HeroSection />
+        <ZoomParallax images={[
+          { src: '/placeholder.svg', alt: 'Project 1' },
+          { src: '/placeholder.svg', alt: 'Project 2' },
+          { src: '/placeholder.svg', alt: 'Project 3' },
+          { src: '/placeholder.svg', alt: 'Project 4' },
+          { src: '/placeholder.svg', alt: 'Project 5' },
+          { src: '/placeholder.svg', alt: 'Project 6' },
+          { src: '/placeholder.svg', alt: 'Project 7' },
+        ]} />
         <PhilosophySection />
+        <LandingAccordionItem />
         <ServicesSection />
         <PortfolioSection />
+        <InnovationSection />
         <CTASection />
         <Footer />
       </main>

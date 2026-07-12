@@ -343,9 +343,11 @@ export default function Footer() {
                 <ul className="space-y-4">
                   {TEAM.map((m) => (
                     <li key={m.name}>
-                      <p className="text-sm font-semibold text-amber-100">{m.name}</p>
-                      <p className="text-xs text-amber-400">{m.role}</p>
-                      <p className="text-xs text-amber-200/60 mt-0.5">{m.skills}</p>
+                      <Link to="/about" className="hover:text-amber-400 transition-colors">
+                        <p className="text-sm font-semibold text-amber-100">{m.name}</p>
+                        <p className="text-xs text-amber-400">{m.role}</p>
+                        <p className="text-xs text-amber-200/60 mt-0.5">{m.skills}</p>
+                      </Link>
                     </li>
                   ))}
                 </ul>

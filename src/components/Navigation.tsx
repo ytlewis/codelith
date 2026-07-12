@@ -1,12 +1,46 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
-const links = [
-  { to: '/', label: 'Home' },
-  { to: '/about', label: 'About' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/contact', label: 'Contact' },
+interface NavItem {
+  to?: string;
+  label: string;
+  type: 'link' | 'dropdown';
+  children?: NavItem[];
+}
+
+const navItems: NavItem[] = [
+  { to: '/', label: 'Home', type: 'link' },
+  {
+    type: 'dropdown',
+    label: 'About',
+    children: [
+      { to: '/about', label: 'Our Story', type: 'link' },
+      { to: '/about#team', label: 'The Team', type: 'link' },
+      { to: '/about#careers', label: 'Careers', type: 'link' },
+    ]
+  },
+  {
+    type: 'dropdown',
+    label: 'Services',
+    children: [
+      { to: '/services#web', label: 'Web Development', type: 'link' },
+      { to: '/services#mobile', label: 'Mobile Apps', type: 'link' },
+      { to: '/services#design', label: 'UI/UX Design', type: 'link' },
+      { to: '/services#ai', label: 'AI/ML Integration', type: 'link' },
+    ]
+  },
+  {
+    type: 'dropdown',
+    label: 'Projects',
+    children: [
+      { to: '/projects', label: 'All Projects', type: 'link' },
+      { to: '/projects#featured', label: 'Featured Work', type: 'link' },
+      { to: '/projects#case-studies', label: 'Case Studies', type: 'link' },
+    ]
+  },
+  { to: '/contact', label: 'Contact', type: 'link' },
 ];
 
 export default function Navigation() {
@@ -77,19 +111,52 @@ export default function Navigation() {
             className="absolute top-2 bottom-2 rounded-full bg-foreground/10 dark:bg-white/10 transition-all duration-300 ease-out pointer-events-none"
             style={{ left: indicatorStyle.left, width: indicatorStyle.width }}
           />
-          {links.map(({ to, label }) => {
-            const isActive = location.pathname === to;
-            return (
-              <Link key={to} to={to}
-                ref={(el) => { linkRefs.current[to] = el; }}
-                onMouseEnter={() => setHovered(to)}
-                className={`relative z-10 px-5 py-1.5 rounded-full text-sm font-medium
-                  transition-colors duration-200 whitespace-nowrap
-                  ${isActive ? 'text-foreground dark:text-white' : 'text-foreground/60 dark:text-white/50 hover:text-foreground dark:hover:text-white'}`}>
-                {label}
-                {isActive && <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />}
-              </Link>
-            );
+          {navItems.map((item) => {
+            if (item.type === 'link') {
+              const isActive = location.pathname === item.to;
+              return (
+                <Link key={item.to} to={item.to!}
+                  ref={(el) => { if (item.to) linkRefs.current[item.to] = el; }}
+                  onMouseEnter={() => setHovered(item.to)}
+                  className={`relative z-10 px-5 py-1.5 rounded-full text-sm font-medium
+                    transition-colors duration-200 whitespace-nowrap
+                    ${isActive ? 'text-foreground dark:text-white' : 'text-foreground/60 dark:text-white/50 hover:text-foreground dark:hover:text-white'}`}>
+                  {item.label}
+                  {isActive && <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />}
+                </Link>
+              );
+            } else {
+              return (
+                <DropdownMenu.Root key={item.label}>
+                  <DropdownMenu.Trigger asChild>
+                    <button className="relative z-10 px-5 py-1.5 rounded-full text-sm font-medium
+                      transition-colors duration-200 whitespace-nowrap
+                      text-foreground/60 dark:text-white/50 hover:text-foreground dark:hover:text-white
+                      flex items-center gap-1">
+                      {item.label}
+                      <ChevronDown className="w-4 h-4" />
+                    </button>
+                  </DropdownMenu.Trigger>
+                  <DropdownMenu.Portal>
+                    <DropdownMenu.Content
+                      className="mt-2 bg-background/95 backdrop-blur-xl border border-border/60 rounded-xl p-2 shadow-lg shadow-black/10 z-50"
+                      sideOffset={5}
+                    >
+                      {item.children?.map((child) => (
+                        <DropdownMenu.Item key={child.to} asChild>
+                          <Link
+                            to={child.to!}
+                            className="block px-4 py-2 rounded-lg text-sm text-foreground/70 hover:text-foreground hover:bg-secondary transition-colors duration-200"
+                          >
+                            {child.label}
+                          </Link>
+                        </DropdownMenu.Item>
+                      ))}
+                    </DropdownMenu.Content>
+                  </DropdownMenu.Portal>
+                </DropdownMenu.Root>
+              );
+            }
           })}
         </div>
 
@@ -114,17 +181,39 @@ export default function Navigation() {
         <div className={`absolute top-0 right-0 h-full w-64 bg-background/95 backdrop-blur-xl
           border-l border-border shadow-2xl flex flex-col pt-20 pb-8 px-6 gap-2
           transition-transform duration-300 ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          {links.map(({ to, label }) => {
-            const isActive = location.pathname === to;
-            return (
-              <Link key={to} to={to}
-                className={`px-4 py-3 rounded-xl text-base font-medium transition-colors duration-200
-                  ${isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-foreground/70 hover:text-foreground hover:bg-secondary'}`}>
-                {label}
-              </Link>
-            );
+          {navItems.map((item) => {
+            if (item.type === 'link') {
+              const isActive = location.pathname === item.to;
+              return (
+                <Link key={item.to} to={item.to!}
+                  className={`px-4 py-3 rounded-xl text-base font-medium transition-colors duration-200
+                    ${isActive
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-secondary'}`}>
+                  {item.label}
+                </Link>
+              );
+            } else {
+              return (
+                <div key={item.label} className="space-y-1">
+                  <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    {item.label}
+                  </div>
+                  {item.children?.map((child) => {
+                    const isActive = location.pathname === child.to;
+                    return (
+                      <Link key={child.to} to={child.to!}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200
+                          ${isActive
+                            ? 'bg-primary/10 text-primary'
+                            : 'text-foreground/70 hover:text-foreground hover:bg-secondary'}`}>
+                        {child.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              );
+            }
           })}
         </div>
       </div>
