@@ -1,65 +1,63 @@
 import SplitText from './SplitText';
-import ServiceCard from './ServiceCard';
+import {
+  HoverSlider,
+  HoverSliderImage,
+  HoverSliderImageWrap,
+  TextStaggerHover,
+} from './AnimatedSlideshow';
 
-const services = [
-  {
-    icon: '📱',
-    title: 'mobile apps',
-    description: 'native and cross-platform mobile experiences that feel intuitive and perform flawlessly.',
-  },
-  {
-    icon: '🌐',
-    title: 'web applications',
-    description: 'scalable, modern web platforms built with cutting-edge frameworks and cloud infrastructure.',
-  },
-  {
-    icon: '⚡',
-    title: 'custom software',
-    description: 'bespoke solutions tailored to your unique business logic and operational needs.',
-  },
-  {
-    icon: '🎨',
-    title: 'ui/ux design',
-    description: 'beautiful, user-centric interfaces that balance aesthetics with exceptional usability.',
-  },
-  {
-    icon: '☁️',
-    title: 'cloud infrastructure',
-    description: 'robust, scalable cloud setups designed for performance, security, and reliability.',
-  },
-  {
-    icon: '🤖',
-    title: 'ai/ml integration',
-    description: 'smart, data-driven features powered by cutting-edge artificial intelligence.',
-  },
+const SLIDES = [
+  { id: "slide-1", title: "Frontend Dev",     imageUrl: "/images/services/frontend.jpeg" },
+  { id: "slide-2", title: "Backend Dev",      imageUrl: "/images/services/backend.jpeg" },
+  { id: "slide-3", title: "UI / UX Design",   imageUrl: "/images/services/uiux.jpeg" },
+  { id: "slide-4", title: "Video Editing",    imageUrl: "/images/services/video.jpeg" },
+  { id: "slide-5", title: "SEO Optimization", imageUrl: "/images/services/seo.jpeg" },
 ];
 
 export default function ServicesSection() {
   return (
-    <section className="section-full relative z-10 py-20">
-      <div className="px-6 max-w-7xl mx-auto w-full">
+    <section className="section-full relative z-10">
+      <HoverSlider className="min-h-svh place-content-center p-6 md:px-12 bg-background text-foreground">
         <SplitText
           as="h2"
-          className="text-3xl md:text-5xl font-heading font-bold text-foreground text-left mb-16 lowercase"
+          className="text-3xl md:text-5xl font-heading font-bold text-left mb-6 lowercase text-foreground"
         >
           what we build
         </SplitText>
-        
-        <div className="relative">
-          {services.map((s, index) => (
-            <div
-              key={s.title}
-              className="mb-6"
-              style={{
-                marginLeft: `${index % 2 === 0 ? '0' : '20%'}`,
-                maxWidth: index % 2 === 0 ? '70%' : '60%',
-              }}
-            >
-              <ServiceCard {...s} />
-            </div>
-          ))}
+
+        <h3 className="mb-6 text-xs font-medium capitalize tracking-wide text-primary">
+          / our services
+        </h3>
+
+        <div className="flex flex-wrap items-center justify-evenly gap-6 md:gap-12">
+          <div className="flex flex-col space-y-2 md:space-y-4">
+            {SLIDES.map((slide, index) => (
+              <TextStaggerHover
+                key={slide.title}
+                index={index}
+                className="cursor-pointer text-4xl font-bold uppercase tracking-tighter"
+                text={slide.title}
+              />
+            ))}
+          </div>
+
+          <HoverSliderImageWrap>
+            {SLIDES.map((slide, index) => (
+              <div key={slide.id}>
+                <HoverSliderImage
+                  index={index}
+                  imageUrl={slide.imageUrl}
+                  src={slide.imageUrl}
+                  alt={slide.title}
+                  className="size-full max-h-96 object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </HoverSliderImageWrap>
         </div>
-      </div>
+      </HoverSlider>
     </section>
   );
 }

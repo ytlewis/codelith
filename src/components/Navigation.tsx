@@ -23,16 +23,6 @@ const navItems: NavItem[] = [
   },
   {
     type: 'dropdown',
-    label: 'Services',
-    children: [
-      { to: '/services#web', label: 'Web Development', type: 'link' },
-      { to: '/services#mobile', label: 'Mobile Apps', type: 'link' },
-      { to: '/services#design', label: 'UI/UX Design', type: 'link' },
-      { to: '/services#ai', label: 'AI/ML Integration', type: 'link' },
-    ]
-  },
-  {
-    type: 'dropdown',
     label: 'Projects',
     children: [
       { to: '/projects', label: 'All Projects', type: 'link' },

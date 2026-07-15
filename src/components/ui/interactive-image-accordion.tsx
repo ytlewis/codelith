@@ -4,28 +4,28 @@ import React, { useState } from 'react';
 const accordionItems = [
   {
     id: 1,
-    title: 'Voice Assistant',
-    imageUrl: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800',
+    title: 'Web Development',
+    imageUrl: '/images/accordion/web-development.jpeg',
   },
   {
     id: 2,
-    title: 'AI Image Generation',
-    imageUrl: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=800',
+    title: 'Mobile Apps',
+    imageUrl: '/images/accordion/mobile-apps.jpeg',
   },
   {
     id: 3,
-    title: 'AI Chatbot + Local RAG',
-    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
+    title: 'UI / UX Design',
+    imageUrl: '/images/accordion/ui-ux-design.jpeg',
   },
   {
     id: 4,
-    title: 'AI Agent',
-    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
+    title: 'Cloud Solutions',
+    imageUrl: '/images/accordion/cloud-solutions.jpeg',
   },
   {
     id: 5,
-    title: 'Visual Understanding',
-    imageUrl: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800',
+    title: 'AI Integration',
+    imageUrl: '/images/accordion/ai-integration.jpeg',
   },
 ];
 
@@ -85,10 +85,10 @@ export function LandingAccordionItem() {
           {/* Left Side: Text Content */}
           <div className="w-full md:w-1/2 text-center md:text-left">
             <h2 className="text-4xl md:text-6xl font-bold text-foreground leading-tight tracking-tighter">
-              Accelerate Gen-AI Tasks on Any Device
+              We Build Software That Actually Works
             </h2>
-            <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto md:mx-0">
-              Build high-performance AI apps on-device without the hassle of model compression or edge deployment.
+            <p className="mt-6 text-lg text-white/90 dark:text-white/90 max-w-xl mx-auto md:mx-0">
+              From sleek web apps to mobile experiences and AI integrations — we deliver end-to-end digital products built for the real world.
             </p>
             <div className="mt-8">
               <a

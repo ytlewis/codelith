@@ -8,29 +8,29 @@ export default function PhilosophySection() {
           <div className="space-y-8">
             <SplitText
               as="h2"
-              className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground text-left lowercase"
+              className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-foreground text-left"
             >
-              we build the infrastructure for your digital presence
+              We Build The Infrastructure For Your Digital Presence
             </SplitText>
             <SplitText
               as="p"
-              className="text-muted-foreground text-base md:text-lg mt-8 font-body max-w-xl leading-relaxed lowercase"
+              className="text-base md:text-lg mt-8 font-body max-w-xl leading-relaxed text-white/90 dark:text-white/90"
               delay={0.3}
             >
-              two minds, one mission. we craft software that stands the test of time, blending creativity with engineering precision.
+              Two minds, one mission. We craft software that stands the test of time, blending creativity with engineering precision.
             </SplitText>
           </div>
           <div className="relative">
             <div className="rounded-2xl overflow-hidden shadow-2xl border border-border/50">
               <img
-                src="/placeholder.svg"
+                src="/images/home/philosophy.jpeg"
                 alt="Digital infrastructure"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="absolute -top-6 -right-6 bg-card/80 backdrop-blur-md border border-border/50 p-6 rounded-xl shadow-lg">
               <p className="text-3xl font-heading font-bold text-primary">2</p>
-              <p className="text-muted-foreground text-sm lowercase">minds, one mission</p>
+              <p className="text-muted-foreground text-sm">Minds, One Mission</p>
             </div>
           </div>
         </div>

@@ -25,11 +25,13 @@ const TEAM = [
     name: 'Lewis Mwangi',
     role: 'Full Stack Engineer',
     skills: 'React · Node.js · TypeScript · AWS',
+    linkedin: 'https://www.linkedin.com/in/lewis-mwangi-50486929a',
   },
   {
     name: 'Lawrence Andwala',
     role: 'Full Stack Engineer',
     skills: 'Vue.js · Python · Docker · PostgreSQL',
+    linkedin: 'https://www.linkedin.com/in/lawrence-imani-719532346',
   },
 ];
 
@@ -343,11 +345,16 @@ export default function Footer() {
                 <ul className="space-y-4">
                   {TEAM.map((m) => (
                     <li key={m.name}>
-                      <Link to="/about" className="hover:text-amber-400 transition-colors">
+                      <a
+                        href={m.linkedin || '/about'}
+                        target={m.linkedin ? '_blank' : undefined}
+                        rel="noopener noreferrer"
+                        className="hover:text-amber-400 transition-colors"
+                      >
                         <p className="text-sm font-semibold text-amber-100">{m.name}</p>
                         <p className="text-xs text-amber-400">{m.role}</p>
                         <p className="text-xs text-amber-200/60 mt-0.5">{m.skills}</p>
-                      </Link>
+                      </a>
                     </li>
                   ))}
                 </ul>

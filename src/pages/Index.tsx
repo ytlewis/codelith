@@ -7,7 +7,6 @@ import { ZoomParallax } from '@/components/ZoomParallax';
 import PhilosophySection from '@/components/PhilosophySection';
 import { LandingAccordionItem } from '@/components/ui/interactive-image-accordion';
 import ServicesSection from '@/components/ServicesSection';
-import PortfolioSection from '@/components/PortfolioSection';
 import InnovationSection from '@/components/InnovationSection';
 import CTASection from '@/components/CTASection';
 import Footer from '@/components/Footer';
@@ -54,18 +53,17 @@ const Index = () => {
 
       <main className="relative z-10">
         <ZoomParallax images={[
-          { src: '/placeholder.svg', alt: 'Project 1' },
-          { src: '/placeholder.svg', alt: 'Project 2' },
-          { src: '/placeholder.svg', alt: 'Project 3' },
-          { src: '/placeholder.svg', alt: 'Project 4' },
-          { src: '/placeholder.svg', alt: 'Project 5' },
-          { src: '/placeholder.svg', alt: 'Project 6' },
-          { src: '/placeholder.svg', alt: 'Project 7' },
+          { src: '/images/home/hero-1.jpeg', alt: 'Project 1' },
+          { src: '/images/home/hero-2.jpeg', alt: 'Project 2' },
+          { src: '/images/home/hero-3.jpeg', alt: 'Project 3' },
+          { src: '/images/home/hero-4.jpeg', alt: 'Project 4' },
+          { src: '/images/home/hero-5.jpeg', alt: 'Project 5' },
+          { src: '/images/home/hero-6.jpeg', alt: 'Project 6' },
+          { src: '/images/home/hero-7.jpeg', alt: 'Project 7' },
         ]} />
         <PhilosophySection />
         <LandingAccordionItem />
         <ServicesSection />
-        <PortfolioSection />
         <InnovationSection />
         <CTASection />
         <Footer />
