@@ -1,11 +1,25 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Linkedin, Mail } from 'lucide-react';
+import { Linkedin, Mail, Github } from 'lucide-react';
+import { useState } from 'react';
 import Footer from '@/components/Footer';
 import ThemeToggle from '@/components/ThemeToggle';
 import Navigation from '@/components/Navigation';
 import PageBackground from '@/components/PageBackground';
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 const founders = [
   {
@@ -13,8 +27,10 @@ const founders = [
     designation: 'Co-Founder & Full Stack Engineer',
     quote:
       'I build software that scales — from pixel-perfect UIs to cloud infrastructure. If it can be coded, we will make it exceptional.',
-    src: '/images/about/founder-lewis.jpeg',
+    bio: 'Lewis is a full-stack engineer with a passion for building scalable, user-centric applications. He specializes in React, Node.js, and cloud infrastructure, with a keen eye for design and attention to detail. When not coding, he enjoys exploring new technologies and contributing to open-source projects.',
+    images: ['/images/about/founder-lewis.jpeg'],
     linkedin: 'https://www.linkedin.com/in/lewis-mwangi-50486929a',
+    github: 'https://github.com/',
     email: 'gathaiyalewis1122@gmail.com',
     skills: ['React', 'Node.js', 'TypeScript', 'AWS', 'Next.js', 'Tailwind CSS'],
   },
@@ -23,8 +39,10 @@ const founders = [
     designation: 'Co-Founder & Full Stack Engineer',
     quote:
       'Robust systems don\'t happen by accident — they are architected. I obsess over backend design, databases, and making sure nothing breaks at 2am.',
-    src: '/images/about/founder-lawrence.jpeg',
+    bio: 'Lawrence is a backend engineer and architect with deep expertise in system design, databases, and cloud technologies. He loves solving complex problems and building reliable systems that scale. His interests include distributed systems, DevOps, and machine learning.',
+    images: ['/images/about/founder-lawrence.jpeg'],
     linkedin: '#',
+    github: 'https://github.com/',
     email: 'lawrence.andwala@example.com',
     skills: ['Vue.js', 'Python', 'Docker', 'PostgreSQL', 'FastAPI', 'MongoDB'],
   },
@@ -47,6 +65,8 @@ const fadeUp = {
 };
 
 export default function About() {
+  const [selectedFounder, setSelectedFounder] = useState<typeof founders[0] | null>(null);
+
   return (
     <div className="relative min-h-screen">
       <PageBackground />
@@ -122,7 +142,12 @@ export default function About() {
             <div className="grid md:grid-cols-2 gap-6 mt-4">
               {founders.map((f) => (
                 <div key={f.name} className="rounded-2xl border border-border/40 bg-card/70 backdrop-blur-md p-6">
-                  <p className="font-heading font-bold text-foreground mb-1">{f.name}</p>
+                  <button
+                    onClick={() => setSelectedFounder(f)}
+                    className="font-heading font-bold text-foreground mb-1 hover:text-primary transition-colors text-left"
+                  >
+                    {f.name}
+                  </button>
                   <p className="text-xs text-primary uppercase tracking-wide mb-4">{f.designation}</p>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {f.skills.map((s) => (
@@ -135,6 +160,10 @@ export default function About() {
                     <a href={f.linkedin} target="_blank" rel="noopener noreferrer"
                       className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all">
                       <Linkedin className="w-3.5 h-3.5" />
+                    </a>
+                    <a href={f.github} target="_blank" rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all">
+                      <Github className="w-3.5 h-3.5" />
                     </a>
                     <a href={`mailto:${f.email}`}
                       className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all">
@@ -167,6 +196,78 @@ export default function About() {
 
         </div>
       </main>
+
+      {/* Founder Modal */}
+      <Dialog open={!!selectedFounder} onOpenChange={(open) => !open && setSelectedFounder(null)}>
+        <DialogContent className="max-w-5xl p-6">
+          {selectedFounder && (
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="relative">
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {selectedFounder.images.map((image, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <img
+                            src={image}
+                            alt={`${selectedFounder.name} - ${index + 1}`}
+                            className="w-full h-96 object-contain rounded-lg bg-secondary/20"
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-12" />
+                  <CarouselNext className="-right-12" />
+                </Carousel>
+              </div>
+              <div className="flex flex-col gap-6">
+                <DialogHeader>
+                  <DialogTitle className="text-3xl font-bold">{selectedFounder.name}</DialogTitle>
+                  <p className="text-primary text-sm uppercase tracking-wide">{selectedFounder.designation}</p>
+                </DialogHeader>
+                <p className="text-muted-foreground leading-relaxed">
+                  {selectedFounder.bio}
+                </p>
+                <div>
+                  <h3 className="font-semibold mb-2">Skills</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedFounder.skills.map((s) => (
+                      <span key={s} className="px-3 py-1 text-xs bg-secondary text-secondary-foreground rounded-full border border-border/50">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <a
+                    href={selectedFounder.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={selectedFounder.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a
+                    href={`mailto:${selectedFounder.email}`}
+                    className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary transition-all"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>

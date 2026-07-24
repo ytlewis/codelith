@@ -3,6 +3,40 @@ import ThemeToggle from '@/components/ThemeToggle';
 import Navigation from '@/components/Navigation';
 import PageBackground from '@/components/PageBackground';
 import FeatureCarousel from '@/components/ui/feature-carousel';
+import { IconCloud } from '@/components/ui/interactive-icon-cloud';
+
+const slugs = [
+  "typescript",
+  "javascript",
+  "dart",
+  "java",
+  "react",
+  "flutter",
+  "android",
+  "html5",
+  "css3",
+  "nodedotjs",
+  "express",
+  "nextdotjs",
+  "prisma",
+  "amazonaws",
+  "postgresql",
+  "firebase",
+  "nginx",
+  "vercel",
+  "testinglibrary",
+  "jest",
+  "cypress",
+  "docker",
+  "git",
+  "jira",
+  "github",
+  "gitlab",
+  "visualstudiocode",
+  "androidstudio",
+  "sonarqube",
+  "figma",
+]
 
 export default function Projects() {
   return (
@@ -27,6 +61,17 @@ export default function Projects() {
           </div>
 
           <FeatureCarousel />
+
+          {/* Tech Stack Section */}
+          <div className="mt-24">
+            <p className="text-xs uppercase tracking-[0.25em] text-primary mb-3">/ our tech stack</p>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground lowercase mb-8">
+              tools we love
+            </h2>
+            <div className="relative flex size-full max-w-lg mx-auto items-center justify-center overflow-hidden rounded-lg border bg-background px-20 pb-20 pt-8">
+              <IconCloud iconSlugs={slugs} />
+            </div>
+          </div>
 
         </div>
       </main>
